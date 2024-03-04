@@ -34,11 +34,12 @@ const person = {
 
 let favoriteActivities: string[];
 favoriteActivities = ['Sports'] 
-console.log(person);
+
+console.log(person.name);
 
 for (let hobby of person.hobbies) {
  console.log(hobby.toUpperCase());
-//  console.log(hobby.map());
+//  console.log(hobby.map()); // !!! ERROR !!!
 }
 
 if (person.role === Role.AUTHOR) {
