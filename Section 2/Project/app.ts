@@ -8,5 +8,13 @@ function printResults(num: number): void {
 
 printResults(add(5, 1))
 
+let combinedValues:(a: number, b: number) => number;
+combinedValues = add;
+// combinedValues = 5;
+// combinedValues = printResults;
+
+
+console.log(combinedValues(8, 8));
+
 // console.log(printResults(add(5, 1)));
 // let someValue = undefined;
