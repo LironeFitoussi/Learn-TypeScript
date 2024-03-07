@@ -1,11 +1,11 @@
 class Department {
     private employees: string[] = [];
 
-    constructor(private id: string, public  name: string) {
+    constructor(private readonly id: string, public  name: string) {
     }
 
     describe (this: Department) {
-        console.log(`Department ${this.id}: ${this.name}`);        
+        console.log(`Department (${this.id}): ${this.name}`);        
     }
 
     addEmployee (employee: string) {
@@ -19,13 +19,44 @@ class Department {
     }
 }
 
-const accounting = new Department("d1", "Accounting");
 
-accounting.describe();
+class ITDepartment extends Department {
+    admins: string[];
+    constructor(id: string, admins: string[]) {
+        super(id, "IT");
+        this.admins = admins;
+    }    
+}
 
-accounting.addEmployee("Max");
-accounting.addEmployee("Manu");
+const it = new ITDepartment("d1", ['max']);
 
-accounting.printEmployeeInformation();
+it.addEmployee("Max");
+it.addEmployee("Manu");
 
-const accountingCopy = { name: 'DUMMY', describe: accounting.describe };
+it.describe();
+it.name = 'NEW NAME';
+it.printEmployeeInformation();
+
+console.log(it);
+
+class AcountingDepartment extends Department {
+    constructor(id: string, private reports: string[]) {
+        super(id, "Accounting");
+    }
+
+    addReport(text: string) {
+        this.reports.push(text);
+    }
+
+    printReports() {
+        console.log(this.reports);
+    }
+}
+
+const accounting = new AcountingDepartment("d2", []);
+accounting.addReport("Report 1");
+accounting.addReport("Report 2: i have a report");
+
+
+accounting.printReports()
+// const accountingCopy = { name: 'DUMMY', describe: it.describe };
