@@ -1,11 +1,11 @@
 class Department {
-    // private id: string;
+    // private readonly id: string;
     // private name: string;
-    private employees: string[] = [];
+    protected employees: string[] = [];
 
-    constructor(private id: string ,public name: string) {
-        this.id = id;
-        this.name = name;
+    constructor(private readonly id: string ,public name: string) {
+        // this.id = id;
+        // this.name = name;
     }
 
     describe(this: Department) {
@@ -14,6 +14,7 @@ class Department {
 
     addEmployee(employee: string) {
         // validation etc
+        // this.id = 'd2'; // This will not work because id is readonly
         this.employees.push(employee);
     }
 
@@ -23,18 +24,58 @@ class Department {
     }
 }
 
-const accounting = new Department("d1" ,'Accounting');
-console.log(accounting);
 
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
+class ITDepartment extends Department {
+    admins: string[];
+    constructor(id: string, admins: string[]) {
+        super(id, 'IT');
+        this.admins = admins;
+    }
+}
+
+class AccountingDepartment extends Department {
+    constructor(id: string, private reports: string[]) {
+        super(id, 'Accounting');
+    }
+
+    addEmployee(name: string) {
+        if(name === 'Max') {
+            return;
+        }
+        this.employees.push(name);
+    }
+
+    addReport(text: string) {
+        this.reports.push(text);
+    }
+
+    printReports() {
+        console.log(this.reports);
+    }
+}
+
+const accounting0 = new Department("d1", 'Accounting');
+console.log(accounting0);
+
+accounting0.addEmployee('Max');
+accounting0.addEmployee('Manu');
 
 // accounting.employees[2] = 'Anna'; // This will not work because employees is private
+const it = new ITDepartment("d1" ,['Max']);
 
-accounting.describe();
-// accounting.name = 'NEW NAME'; // This will work because name is public by default
-accounting.printEmployeeInformation();
+accounting0.describe();
+accounting0.name = 'NEW NAME'; // This will work because name is public by default
+accounting0.printEmployeeInformation();
 
 // const accountingCopy = { name: "DUMMMY", describe: accounting.describe};
 
 // accountingCopy.describe(); // Department: undefined
+
+console.log(it);
+
+const accounting = new AccountingDepartment('d2', []);
+accounting.addEmployee('Max');
+accounting.addEmployee('Manu');
+accounting.printEmployeeInformation();
+accounting.addReport('Something went wrong...');
+accounting.printReports();
