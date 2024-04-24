@@ -34,9 +34,18 @@ abstract class Department {
 
 class ITDepartment extends Department {
     admins: string[];
-    constructor(id: string, admins: string[]) {
+    private static instance: ITDepartment;
+    private constructor(id: string, admins: string[]) {
         super(id, 'IT');
         this.admins = admins;
+    }
+
+    static getInstance() {
+        if(ITDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new ITDepartment('d1', ['Max']);
+        return this.instance;
     }
 
     describe() {
@@ -46,7 +55,7 @@ class ITDepartment extends Department {
 
 class AccountingDepartment extends Department {
     private lastReport: string;
-
+    private static instance: AccountingDepartment;
     get mostRecentReport() {
         if(this.lastReport) {
             return this.lastReport;
@@ -61,9 +70,17 @@ class AccountingDepartment extends Department {
         this.addReport(value);
     }
 
-    constructor(id: string, private reports: string[]) {
+    private constructor(id: string, private reports: string[]) {
         super(id, 'Accounting');
         this.lastReport = reports[0];
+    }
+
+    static getInstance() {
+        if(AccountingDepartment.instance) {
+            return this.instance;
+        }
+        this.instance = new AccountingDepartment('d2', []);
+        return this.instance;
     }
 
     describe() {
@@ -97,8 +114,8 @@ const employee1 = Department.createEmployee('Anna');
 console.log(employee1, Department.fiscalYear);
 
 // accounting.employees[2] = 'Anna'; // This will not work because employees is private
-const it = new ITDepartment("d1" ,['Max']);
-
+// const it = new ITDepartment("d1" ,['Max']);
+const it = ITDepartment.getInstance();
 
 
 // accounting0.describe();
@@ -111,7 +128,11 @@ const it = new ITDepartment("d1" ,['Max']);
 
 console.log(it);
 
-const accounting = new AccountingDepartment('d2', []);
+// const accounting = new AccountingDepartment('d2', []);
+const accounting = AccountingDepartment.getInstance();
+const accounting2 = AccountingDepartment.getInstance();
+console.log(accounting, accounting2);
+
 it.addEmployee('Max');
 it.addEmployee('Manu');
 it.printEmployeeInformation();
