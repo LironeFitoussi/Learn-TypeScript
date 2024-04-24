@@ -4,7 +4,16 @@
 
 const button = document.querySelector('button');
 
+function add(n1: number, n2: number) {
+  if (n1 + n2 > 0) {
+    return n1 + n2;
+  }
+  // !!!ERROR!!! Function doesn't return a value if no return statement is executed
+  return; 
+}
+
 function clickHandler(message: string) {
+  // let userName = 'Max'; // !!!ERROR!!! Unused variable
   console.log('Clicked! ' + message);
 };
 
