@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server",
-    "commit": "git add . && git commit -m 'Update'",
-    "push": "git push origin main", 
-    "done": "npm run commit && npm run push"
+    "commit": "git add . && git commit -m 'Update' && git push origin main"
   },
   "keywords": [
     "typescript",
