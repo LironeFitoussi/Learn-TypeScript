@@ -1,11 +1,16 @@
 class Department {
     // private readonly id: string;
     // private name: string;
+    static fiscalYear: number = 2020;
     protected employees: string[] = [];
 
     constructor(private readonly id: string ,public name: string) {
         // this.id = id;
         // this.name = name;
+    }
+
+    static createEmployee(name: string) {
+        return { name: name };
     }
 
     describe(this: Department) {
@@ -78,8 +83,13 @@ console.log(accounting0);
 accounting0.addEmployee('Max');
 accounting0.addEmployee('Manu');
 
+const employee1 = Department.createEmployee('Anna');
+console.log(employee1, Department.fiscalYear);
+
 // accounting.employees[2] = 'Anna'; // This will not work because employees is private
 const it = new ITDepartment("d1" ,['Max']);
+
+
 
 accounting0.describe();
 accounting0.name = 'NEW NAME'; // This will work because name is public by default
@@ -92,9 +102,9 @@ accounting0.printEmployeeInformation();
 console.log(it);
 
 const accounting = new AccountingDepartment('d2', []);
-accounting.addEmployee('Max');
-accounting.addEmployee('Manu');
-accounting.printEmployeeInformation();
+it.addEmployee('Max');
+it.addEmployee('Manu');
+it.printEmployeeInformation();
 // console.log(accounting.mostRecentReport);
 
 accounting.addReport('New Report 1...');
