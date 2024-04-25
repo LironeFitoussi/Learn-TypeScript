@@ -95,5 +95,5 @@ function createCourseGoal(title: string, description: string, date: Date): Cours
 }
 
 const names: Readonly<string[]> = ['Alice', 'Bob'];
-names.push('Charlie'); // Error!
-names.pop(); // Error!
+// names.push('Charlie'); //! Error!
+// names.pop(); //! Error!
