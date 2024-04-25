@@ -19,6 +19,7 @@ function merge<T extends object, U extends object>(objA: T, objB: U) {
 const mergedObj = merge({name: 'Alice', hobbies: ['Sports']}, {age: 30});
 console.log(mergedObj.hobbies);
 
+// Generic constraints
 interface Lengthy {
     length: number;
 }
@@ -34,3 +35,10 @@ function countAndDescribe<T extends Lengthy>(element: T): [T, string]{
 }
 
 console.log(countAndDescribe(['Sports', 'Cooking']));
+
+// keyof constraint 
+function extractAndConvert<T extends object, U extends keyof T>(obj: T, key: U) {
+    return 'Value: ' + obj[key];
+}
+
+extractAndConvert({name: 'Alice'}, 'name');
