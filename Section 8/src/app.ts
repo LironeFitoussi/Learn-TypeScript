@@ -105,6 +105,7 @@ function Autobind(_: any, _2: string, descriptor: PropertyDescriptor) {
 class Printer {
     message = 'This works!';
 
+    @Autobind
     showMessage() {
         console.log(this.message);
     }
@@ -113,4 +114,4 @@ class Printer {
 const p = new Printer();
 
 const button = document.querySelector('button')!;
-button.addEventListener('click', p.showMessage.bind(p));
+button.addEventListener('click', p.showMessage);
