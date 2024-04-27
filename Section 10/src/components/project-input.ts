@@ -3,13 +3,13 @@
 // / <reference path="../util/validation.ts" />
 // / <reference path="../decorators/autobind.ts" />
 // / <reference path="../state/project.ts" />
-import { Component } from './base-component.js';
+import Cmp from './base-component.js';
 import * as Validation from '../util/validation.js';
 import { autobind as Autobind} from '../decorators/autobind.js';
 import { projectState } from '../state/project.js';
 
 // namespace App {
-  export class ProjectInput extends Component<HTMLDivElement, HTMLFormElement> {
+  export class ProjectInput extends Cmp<HTMLDivElement, HTMLFormElement> {
     titleInputElement: HTMLInputElement;
     descriptionInputElement: HTMLInputElement;
     peopleInputElement: HTMLInputElement;
