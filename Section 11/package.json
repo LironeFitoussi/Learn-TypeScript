@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "lite-server",
+    "build": "webpack",
     "commit": "git add . && git commit -m 'Progress-Lesson' && git push"
   },
   "keywords": [
