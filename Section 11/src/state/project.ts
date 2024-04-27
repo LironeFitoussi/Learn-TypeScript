@@ -1,5 +1,5 @@
 // Project State Management
-import { Project, ProjectStatus } from '../models/project.js';
+import { Project, ProjectStatus } from '../models/project';
 
 // namespace App {
   type Listener<T> = (items: T[]) => void;
